@@ -5,7 +5,7 @@ Single source of truth. Every agent and SOP references this file; none restate i
 ## Identity and sender
 
 - Brand: The AI Agency Blueprint
-- Sender: chiefofstaff@theaiagencyblueprint.com. Connected in Apollo as a Gmail account (verified 2026-10-03). Mailwarming ENABLED 2026-10-03 (approved by Joaquin). Apollo send limits on this mailbox: 50/day, 6/hour, 10-minute delay; Patty enforces our 30/day cap.
+- Sender (DECIDED by Joaquin 2026-10-06): the sending inboxes on DOMAIN_3, chiefofstaff1-4@theaiagencyblueprint.io (more on DOMAIN_1-2 later). The primary mailbox chiefofstaff@theaiagencyblueprint.com is NEVER used for cold sends; it is connected in Apollo as a Gmail account (verified 2026-10-03). Mailwarming ENABLED 2026-10-03 (approved by Joaquin). Apollo send limits on this mailbox: 50/day, 6/hour, 10-minute delay; Patty enforces our 30/day cap.
 - Signature (APPROVED by Joaquin): the Chief of Staff block in /config/footer.md (role-based, no invented personal name). Emails speak as "we"; Joaquin is "our CEO" where the call is offered. LinkedIn notes are the exception: they go out from Joaquin's own account and are written in his voice.
 - Footer and unsubscribe: /config/footer.md (verbatim)
 - Retired brand names must never appear anywhere. Enforced by `python execution/brand_scrub.py` (zero hits required; the patterns live only in that script).
@@ -127,7 +127,9 @@ VERIFIED by Joaquin 2026-10-03 (20 minutes, brand-clean, correct calendar, buffe
 
 ## Notifications
 
-Every notification goes to BOTH Slack and Telegram. If one channel fails, deliver on the other and log the failure. Telegram connector is not yet confirmed (open item).
+Every notification goes to BOTH Slack and Telegram. If one channel fails, deliver on the other and log the failure. **Telegram is live** (verified 2026-10-06): send with `python execution/notify_telegram.py "<message>"`, which reads `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` from the environment. In shadow mode the script only allows "N drafts ready for review" and refuses anything else; no prospect data ever goes to Telegram.
+
+**Slack channel:** `#agent-ops` (ID `C0C74B5UPS6`, public, verified 2026-10-06). Shadow mode: only "N drafts ready for review" style counts, no prospect data. Open item: a private `#agent-alerts` channel exists but the Slack connector cannot see it; move alerts there before Patty goes live, once the connector can reach it, and archive `#agent-ops`.
 
 ## Output standard (all agents)
 
@@ -162,7 +164,8 @@ Open (see the numbered list in chat for the current questions):
 - [ ] Confirm the three domains are purchased and DOMAIN_1's spelling ("agent") is intended
 - [ ] Connect chiefofstaff1-4 @ .io to Apollo (OAuth, one at a time), turn Mailwarming on, limit 30/day; then create the other 8 mailboxes
 - [ ] Decide whether to keep the 2-minute Loom offer in Email 1 (Joaquin would record them on request)
-- [ ] Telegram: bot token received in chat but UNVERIFIED (api.telegram.org blocked from this environment); chat ID still needed; enter token only in Make or .env, never the repo; revoke and reissue the token since it was pasted in chat
+- [x] Telegram: live and verified 2026-10-06 (token and chat ID set as environment variables, test message delivered)
+- [ ] Telegram: the bot token was pasted in chat earlier; revoke and reissue it in BotFather, then update `TELEGRAM_BOT_TOKEN`
 - [ ] Verify the opt-out link renders in an Apollo test email
 - [ ] Confirm the email verification tool (default NeverBounce) and the Apollo do-not-contact list as master suppression list
 - [ ] Review the 8 dry-run items (optional calibration, outputs/shadow/2026-10-03/)

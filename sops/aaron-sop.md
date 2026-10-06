@@ -7,6 +7,7 @@ Produce a verified, scored, capacity-sized send list every business day, and a o
 
 ## Shadow behavior
 Until Joaquin flags Aaron `send-authorized`: write drafts to `/outputs/shadow/<date>/aaron/`, log each item (`date,agent,item,approved,edits,error_severity`) in `/logs/shadow-log.csv`. No Apollo writes, no paid enrichment (ask first), no external posts beyond "N drafts ready for review".
+Telegram is live: send via `python execution/notify_telegram.py "N drafts ready for review"`. The script refuses any other text, so never put prospect data in a notification.
 
 ## Mode 1: SOURCE (daily, 07:00 ET)
 - **Inputs:** niche filters below; weekly pool target 2,500.

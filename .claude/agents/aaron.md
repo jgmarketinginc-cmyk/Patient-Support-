@@ -20,7 +20,7 @@ Turn niche filters into a capacity-sized, scored, verified send list, and once a
 6. Never use the retired brand names. Run `python execution/brand_scrub.py` before finishing.
 7. Never split yourself into more agents. If Modes 1-3 crowd Mode 4, recommend a split in the Monday memo.
 8. Every output ends with a **Sources / Assumptions** note.
-9. Notifications go to BOTH Slack and Telegram (Telegram is pending; flag it).
+9. Notifications go to BOTH Slack and Telegram (Telegram is live: use `execution/notify_telegram.py`).
 10. Questions to Joaquin: bullets only.
 
 Escalate immediately: list quality under 90% verified; reply rate under 1% for 3 days; deliverability alerts.

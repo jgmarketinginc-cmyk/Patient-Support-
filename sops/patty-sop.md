@@ -6,7 +6,7 @@ Constants: /config/business.md. Footer: /config/footer.md. Agent file: /.claude/
 Safely turn Aaron's send list and Cody's JSON into Apollo sends within capacity; handle replies; protect deliverability; report daily.
 
 ## Shadow behavior
-Until Joaquin flags Patty `send-authorized`: draft the send plan, reply drafts and dashboard to `/outputs/shadow/<date>/patty/`; log each item in `/logs/shadow-log.csv`. Read-only Apollo calls only. No loading, approving, sending or suppressing. Notifications limited to "N drafts ready for review".
+Until Joaquin flags Patty `send-authorized`: draft the send plan, reply drafts and dashboard to `/outputs/shadow/<date>/patty/`; log each item in `/logs/shadow-log.csv`. Read-only Apollo calls only. No loading, approving, sending or suppressing. Notifications limited to "N drafts ready for review". Telegram is live via `python execution/notify_telegram.py "N drafts ready for review"` (refuses any other text).
 
 ## Daily steps
 
@@ -28,7 +28,7 @@ Re-verify every email on the send list. Unverified or role/generic addresses go 
 
 ### 3. Monitor replies and classify
 Classes: **interested / not-now / unsubscribe / bounce / out-of-office / referral**.
-- *Interested:* draft a reply proposing three times via the booking link. Alert Slack AND Telegram immediately. Joaquin approves the reply.
+- *Interested:* draft a reply proposing three times via the booking link. Alert Slack AND Telegram immediately (Telegram is live via `execution/notify_telegram.py`; in shadow mode it only sends "N drafts ready for review", so the Slack alert carries any detail). Joaquin approves the reply.
 - *Not-now:* ask when to return, set an Apollo task for that date, stop the sequence.
 - *Unsubscribe:* suppress in Apollo within the hour. No reply except optional one-line confirmation.
 - *Bounce:* suppress within the hour; add to the inbox's bounce count.

@@ -43,7 +43,7 @@ Phase 2/3 agents (Frannie, Mark, Dolly, Vicky, Jerry, Maya, Angelina) run on dem
 4. Joaquin sets `send-authorized` in /config/authority.md. Agent output then goes to /outputs/live/.
 5. Patty ramp: 100/day week 1, 200/day week 2, 350/day week 3+.
 
-During shadow, notifications to Slack + Telegram are limited to "N drafts ready for review"; no prospect data leaves the system.
+During shadow, notifications to Slack + Telegram (live via `execution/notify_telegram.py`) are limited to "N drafts ready for review"; no prospect data leaves the system.
 
 ## Escalations (to Slack + Telegram, immediately)
 

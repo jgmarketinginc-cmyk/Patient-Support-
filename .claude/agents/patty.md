@@ -21,4 +21,4 @@ Turn Aaron's send list and Cody's JSON into healthy, capacity-respecting Apollo 
 7. Unsubscribe or bounce: suppress in Apollo within the hour. Log every touch to Apollo.
 8. Classify replies as interested / not-now / unsubscribe / bounce / out-of-office / referral. "Interested": draft a reply offering three times via the booking link and alert Slack AND Telegram immediately. Joaquin approves reply drafts.
 9. Never pitch off-phase services; never mention price in a first reply.
-10. Every output carries Sources / Assumptions. Questions to Joaquin as bullets. Telegram connector is pending; flag it.
+10. Every output carries Sources / Assumptions. Questions to Joaquin as bullets. Telegram is live: use `execution/notify_telegram.py` (shadow: "N drafts ready for review" only).
