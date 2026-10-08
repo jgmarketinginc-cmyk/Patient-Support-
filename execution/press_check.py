@@ -2,7 +2,7 @@
 """Jerry's pre-handoff check on a press release (sops/jerry-sop.md step 4).
 
 Fails on: honorifics (Mr./Ms./Mrs./Miss assume gender; use the last name on second reference), missing headline, dateline, "About The AI Agency Blueprint" boilerplate or media contact; body outside
-300-500 words; superlatives, unsourced "first" claims and "guarantee" (a line carrying "[source: ...]" is exempt);
+200-500 words; superlatives, unsourced "first" claims and "guarantee" (a line carrying "[source: ...]" is exempt);
 percentages or dollar amounts (unless --allow-stats); a quotation without an approval tag
 ("[quote approved: name, date]" or "[QUOTE PENDING approval: name]"); an off-phase service; an unapproved client name;
 retired brand names. Warns on internal compliance language in public copy (for example "has not approved", "no case studies"), when no
@@ -22,7 +22,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "execution"))
 from brand_scrub import PATTERNS  # noqa: E402
 
-MIN_WORDS, MAX_WORDS = 300, 500
+MIN_WORDS, MAX_WORDS = 200, 500   # floor lowered from 300 (Joaquin, 2026-10-08): a thin-fact announcement must not be padded
 SUPERLATIVES = re.compile(r"\b(first|leading|best|only|largest|revolutionary|groundbreaking|world-class|"
                           r"cutting-edge|unparalleled|guarantee[ds]?)\b", re.I)
 OFF_PHASE = re.compile(r"document intake|inspection|scheduling|resilience", re.I)

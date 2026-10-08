@@ -15,9 +15,10 @@ Module file format:
   <one line>
   ## Sources / Assumptions
 
-Fails on: missing fields; target or estimated length outside 3-8 minutes (130 words/minute of Spoken text);
+Fails on: missing fields; an off-phase service named as something the system does (naming it in a "does not do"
+clause, such as "does not handle inspections", is allowed); target or estimated length outside 3-8 minutes (130 words/minute of Spoken text);
 more than one Task; no numbered on-screen steps; result claims, percentages, testimonials; prices above the
-entry offer; off-phase services; an unapproved client name; retired brand names.
+entry offer; an unapproved client name; retired brand names.
 Warns when the estimate differs from the target by more than 20%, or Sources are missing.
 
 Usage: python execution/course_check.py module.md [--client "Name"]...
@@ -38,6 +39,9 @@ MIN_MIN, MAX_MIN = 3, 8
 ENTRY_PRICE = 1500
 CLAIMS = re.compile(r"testimonial|trusted by|case stud|guarantee|proven|award|\d\s?%", re.I)
 OFF_PHASE = re.compile(r"document intake|inspection|scheduling|resilience", re.I)
+# An off-phase service may be NAMED when the clause says the system does not do it ("does not handle inspections").
+NEGATION = re.compile(r"\b(does not|do not|doesn't|don't|will not|won't|cannot|can't|never|is not|isn't|not part of|not covered|"
+                      r"not in scope|out of scope|outside)\b", re.I)
 SECTIONS = ("On-screen steps", "Spoken", "What to do next")
 
 
@@ -94,9 +98,11 @@ def check(text, banned_clients=()):
     over = [a for a in re.findall(r"\$\s?(\d[\d,]*)", body) if float(a.replace(",", "")) > ENTRY_PRICE]
     if over:
         fails.append(f"price above ${ENTRY_PRICE:,} in a training asset: {over}")
-    m = OFF_PHASE.search(body)
-    if m:
-        fails.append(f"off-phase service named: '{m.group(0)}'")
+    for clause in re.split(r"[.!?;:\n]+", body):
+        m = OFF_PHASE.search(clause)
+        if m and not re.search(NEGATION.pattern + r".*" + re.escape(m.group(0)), clause, re.I):
+            fails.append(f"off-phase service named as something the system does: '{m.group(0)}' (naming it is allowed only in a 'does not do' clause)")
+            break
     for name in banned_clients:
         if re.search(re.escape(name), text, re.I):
             fails.append(f"unapproved client name present: '{name}'")

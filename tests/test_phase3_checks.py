@@ -159,11 +159,17 @@ class PressTests(unittest.TestCase):
         self.assertTrue(r2["pass"], r2["fails"])
 
     def test_length_and_missing_sections(self):
+        self.assertEqual(press_check.MIN_WORDS, 200)
         r = press_check.check("# Short\n\n[CITY, NJ, DATE] - Tiny.\n")
         joined = " ".join(r["fails"])
         self.assertIn("words", joined)
         self.assertIn("boilerplate", joined)
         self.assertIn("media contact", joined)
+
+    def test_a_short_factual_release_under_300_words_passes(self):
+        r = press_check.check(release(n=220), ["Reyes"])
+        self.assertTrue(200 <= r["words"] < 300, r["words"])
+        self.assertTrue(r["pass"], r["fails"])
 
     def test_honorific_fails_and_internal_note_warns(self):
         r = press_check.check(release(extra="Mr. Garcia leads the company."), ["Reyes"])
@@ -201,6 +207,14 @@ class CourseTests(unittest.TestCase):
     def test_more_than_one_task_fails(self):
         r = course_check.check(module(extra_task="; also update the dashboard"))
         self.assertTrue(any("more than one task" in f for f in r["fails"]))
+
+    def test_naming_out_of_scope_items_in_a_does_not_do_clause_is_allowed(self):
+        ok = course_check.check(module(extra="The system does not handle inspections or scheduling."), ["Reyes"])
+        self.assertTrue(ok["pass"], ok["fails"])
+        bad = course_check.check(module(extra="The system handles scheduling for your office."), ["Reyes"])
+        self.assertTrue(any("off-phase" in f for f in bad["fails"]), bad["fails"])
+        sneaky = course_check.check(module(extra="It handles inspections and it does not guess."), ["Reyes"])
+        self.assertTrue(any("off-phase" in f for f in sneaky["fails"]), sneaky["fails"])
 
     def test_claims_offphase_and_client_name_fail(self):
         r = course_check.check(module(extra="This cuts workload 60% and handles inspection scheduling for Reyes."), ["Reyes"])

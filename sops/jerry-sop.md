@@ -13,7 +13,7 @@ Request from Joaquin with a **source of truth**: the signed agreement, award not
 
 ## Steps
 1. **Verify the win** against the source. List each fact (who, what, when, where) with its source line. Anything unconfirmed goes to the open-facts list, not into the release.
-2. **Release** (`<slug>-release.md`), 300 to 500 words, inverted pyramid:
+2. **Release** (`<slug>-release.md`), 200 to 500 words (a short, factual release beats a padded one; never add filler or internal compliance notes to reach a length), inverted pyramid:
    - Headline (factual, no superlatives)
    - Dateline at the start of the lead: `[CITY, NJ, DATE] -` (placeholders until confirmed)
    - Lead paragraph: who, what, when, why it matters

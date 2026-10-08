@@ -35,7 +35,7 @@ What to do next:
 6. **Hand to Joaquin** with a recording order, a shot list per module (screens to show), and Sources / Assumptions.
 
 ## Rules
-- Teach only what is in scope and delivered. No results, no promises, no off-phase services.
+- Teach only what is in scope and delivered. No results, no promises, no off-phase services described as something the system does. Name out-of-scope items inside a "does not do" statement so staff know what to expect (Joaquin, 2026-10-08).
 - One task per module, 3 to 8 minutes, ending with what to do next.
 - Generic templates: no client names or data; client-specific parts bracketed until approved.
 - Courses as a product (public or paid): [PENDING: Joaquin]. No pricing or sales copy.
