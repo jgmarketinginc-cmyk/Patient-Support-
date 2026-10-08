@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Jerry's pre-handoff check on a press release (sops/jerry-sop.md step 4).
 
-Fails on: missing headline, dateline, "About The AI Agency Blueprint" boilerplate or media contact; body outside
+Fails on: honorifics (Mr./Ms./Mrs./Miss assume gender; use the last name on second reference), missing headline, dateline, "About The AI Agency Blueprint" boilerplate or media contact; body outside
 300-500 words; superlatives, unsourced "first" claims and "guarantee" (a line carrying "[source: ...]" is exempt);
 percentages or dollar amounts (unless --allow-stats); a quotation without an approval tag
 ("[quote approved: name, date]" or "[QUOTE PENDING approval: name]"); an off-phase service; an unapproved client name;
-retired brand names. Warns when no --client names were supplied to check against, or Sources are missing.
+retired brand names. Warns on internal compliance language in public copy (for example "has not approved", "no case studies"), when no
+--client names were supplied to check against, or Sources are missing.
 
 Usage: python execution/press_check.py release.md [--client "Name"]... [--approved-client "Name"]... [--allow-stats]
   --client           a client name that is NOT approved for use (must be absent), like asset_check.py
@@ -27,6 +28,8 @@ SUPERLATIVES = re.compile(r"\b(first|leading|best|only|largest|revolutionary|gro
 OFF_PHASE = re.compile(r"document intake|inspection|scheduling|resilience", re.I)
 DATELINE = re.compile(r"(?m)^\s*(\[[^\]\n]+\]|[A-Z][A-Za-z .]+,\s*[A-Z]{2}(?:,[^—–\-\n]*)?)\s*[—–-]")
 QUOTE = re.compile(r"[\"“]([^\"“”]{8,})[\"”]")
+HONORIFIC = re.compile(r"\b(Mr|Mrs|Ms|Miss)\.(?=\s)")
+INTERNAL_NOTE = re.compile(r"has not approved|not (yet )?approved|no case stud|makes? no claims|not available to cite", re.I)
 TAG = re.compile(r"\[(quote approved:|QUOTE PENDING)", re.I)
 
 
@@ -65,6 +68,13 @@ def check(text, banned_clients=(), approved_clients=(), allow_stats=False):
     m = OFF_PHASE.search(body)
     if m:
         fails.append(f"off-phase service named: '{m.group(0)}'")
+    m = HONORIFIC.search(body)
+    if m:
+        fails.append(f"honorific '{m.group(0)}' assumes gender: use the last name only unless Joaquin supplies the preferred form")
+    public = re.sub(r"\[[^\]]*\]", " ", body)
+    m = INTERNAL_NOTE.search(public)
+    if m:
+        warns.append(f"internal compliance language in public copy: '{m.group(0)}' (belongs in the open-facts list, not the release)")
     banned = [c for c in banned_clients if c.lower() not in {a.lower() for a in approved_clients}]
     for name in banned:
         if re.search(re.escape(name), text, re.I):

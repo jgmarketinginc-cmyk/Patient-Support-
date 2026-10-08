@@ -165,6 +165,13 @@ class PressTests(unittest.TestCase):
         self.assertIn("boilerplate", joined)
         self.assertIn("media contact", joined)
 
+    def test_honorific_fails_and_internal_note_warns(self):
+        r = press_check.check(release(extra="Mr. Garcia leads the company."), ["Reyes"])
+        self.assertTrue(any("honorific" in f for f in r["fails"]), r["fails"])
+        r2 = press_check.check(release(extra="The municipality has not approved being named."), ["Reyes"])
+        self.assertTrue(any("internal compliance language" in w for w in r2["warns"]), r2["warns"])
+        self.assertTrue(r2["pass"], r2["fails"])           # a warning, not a failure
+
     def test_off_phase_service_fails(self):
         r = press_check.check(release(extra="The company also offers document intake."), ["Reyes"])
         self.assertTrue(any("off-phase" in f for f in r["fails"]))
