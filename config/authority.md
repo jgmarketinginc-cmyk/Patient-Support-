@@ -33,6 +33,7 @@ Phase 2 agents run on demand, so the test counts items, not days.
 | Jerry | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 | Maya | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 | Angelina | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
+| Chief of Staff | 0 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 
 ## Patty post-exit ramp
 

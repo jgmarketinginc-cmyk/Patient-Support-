@@ -24,8 +24,9 @@ def status(root=ROOT):
     if log.exists():
         with open(log, newline="", encoding="utf-8") as f:
             rows = list(csv.DictReader(f))
-    names = list(registry) + [n for n in {r["agent"].title() for r in rows}
-                              if n.lower() not in {k.lower() for k in registry}]
+    by_slug = {k.lower().replace(" ", "-"): k for k in list(registry) + list(authority)}
+    extra = {by_slug.get(r["agent"].lower(), r["agent"].title()) for r in rows}
+    names = list(registry) + sorted(n for n in extra if n.lower() not in {k.lower() for k in registry})
     out = []
     for name in names:
         mine = [r for r in rows if r["agent"].lower() == name.lower().replace(" ", "-")]
@@ -35,7 +36,7 @@ def status(root=ROOT):
         ok, why = callable_agent(name, root, registry, authority) if name in registry else (False, "not in registry")
         out.append({
             "agent": name,
-            "phase": registry.get(name, {}).get("Phase", "?"),
+            "phase": registry.get(name, {}).get("Phase", "0" if name in authority else "?"),
             "authority_status": authority.get(name, "not listed"),
             "callable": ok,
             "items_logged": len(mine),
