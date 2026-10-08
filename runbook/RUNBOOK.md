@@ -26,7 +26,7 @@ Sunday: Aaron weekly review > Monday memo
 | 17:30 | Patty | Dashboard | Apollo stats | Sends, opens, replies, positive reply rate, meetings, bounces, inbox health |
 | Sun 19:00 | Aaron | Mode 4 WEEKLY REVIEW | All agents' metrics | One-page Monday memo (worst metric, one fix, "the one thing not to do") |
 
-Phase 2 agents run on demand (see Phase 2 pipeline below). Phase 3 agents (Vicky, Jerry, Maya, Angelina) are built as files and checkers but are not in shadow yet: Joaquin adds their rows to /config/authority.md to start them. Aaron also produces pre-call briefs on request.
+Phase 2 agents run on demand (see Phase 2 pipeline below). Phase 3 agents (Vicky, Jerry, Maya, Angelina) are in shadow since 2026-10-08 (Joaquin, /config/authority.md); see the Phase 3 section below. Aaron also produces pre-call briefs on request.
 
 ## Phase 2 pipeline (on demand)
 

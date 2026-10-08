@@ -4,6 +4,7 @@ Uses a temp copy of config/ (and the agent files) for the extensibility test so 
 """
 import csv
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -47,27 +48,33 @@ class RouteTests(unittest.TestCase):
         r = route("pitch document intake to a prospect")
         self.assertEqual((r["task_type"], r["mode"], r["needs_joaquin"]), ("off_phase_service_request", "escalate", True))
 
-    def test_unbuilt_phase3_agent_escalates(self):
-        r = route("ask Vicky to handle it")
-        self.assertTrue(r["needs_joaquin"])
-        self.assertTrue(any("registered but not built" in x for x in r["reasons"]))
+    def test_unbuilt_agent_escalates(self):
+        tmp = _unbuilt_repo("Vicky")
+        try:
+            r = route("ask Vicky to handle it", tmp)
+            self.assertTrue(r["needs_joaquin"])
+            self.assertTrue(any("registered but not built" in x for x in r["reasons"]))
+        finally:
+            shutil.rmtree(tmp)
 
-    def test_phase3_role_without_name_escalates(self):
-        r = route("translate this welcome email into Spanish")
-        self.assertEqual(r["owner"], "Angelina")
-        self.assertTrue(r["needs_joaquin"])
-
-    def test_confirmed_phase3_roles_route_to_the_right_unbuilt_agent(self):
+    def test_role_keywords_route_to_the_right_agent_and_escalate_when_unbuilt(self):
         expected = {
+            "translate this welcome email into Spanish": "Angelina",
             "write a press release on the Camden win": "Jerry",
             "build the client training library videos": "Maya",
             "script a viral scripture reel": "Vicky",
         }
-        for text, owner in expected.items():
-            r = route(text)
-            self.assertEqual(r["owner"], owner, text)
-            self.assertTrue(r["needs_joaquin"], text)                       # none is built yet
-            self.assertTrue(any("registered but not built" in x for x in r["reasons"]), text)
+        tmp = _unbuilt_repo("Vicky", "Jerry", "Maya", "Angelina")
+        try:
+            for text, owner in expected.items():
+                live = route(text)                                           # real authority.md: shadow, callable
+                self.assertEqual((live["owner"], live["needs_joaquin"]), (owner, False), text)
+                gated = route(text, tmp)                                     # same request when not built
+                self.assertEqual(gated["owner"], owner, text)
+                self.assertTrue(gated["needs_joaquin"], text)
+                self.assertTrue(any("registered but not built" in x for x in gated["reasons"]), text)
+        finally:
+            shutil.rmtree(tmp)
 
     def test_wrong_or_other_venture_escalates_without_inventing(self):
         for text in ("draft the NJ EDA grant narrative", "update the Pathfinder roadmap"):
@@ -111,7 +118,7 @@ class PlanTests(unittest.TestCase):
         self.assertFalse(p["ready"])
 
     def test_unbuilt_agent_in_playbook_blocks(self):
-        tmp = _copy_repo()
+        tmp = _unbuilt_repo("Vicky")
         try:
             _append(tmp / "config/playbooks.md", """
 ## playbook: needs-vicky
@@ -190,7 +197,12 @@ class StatusTests(unittest.TestCase):
         registered = {"Aaron", "Cody", "Patty", "Frannie", "Mark", "Dolly", "Vicky", "Angelina", "Jerry", "Maya"}
         self.assertTrue(registered <= set(rows))          # all ten registered agents, plus any logger such as the Chief of Staff
         self.assertTrue(rows["Frannie"]["callable"])
-        self.assertFalse(rows["Vicky"]["callable"])
+        self.assertTrue(rows["Vicky"]["callable"])                         # Phase 3 rows are shadow since 2026-10-08
+        tmp = _unbuilt_repo("Vicky")
+        try:
+            self.assertFalse({r["agent"]: r for r in team_status.status(tmp)}["Vicky"]["callable"])
+        finally:
+            shutil.rmtree(tmp)
 
 
 class ExtensibilityTests(unittest.TestCase):
@@ -234,32 +246,37 @@ class ExtensibilityTests(unittest.TestCase):
 
 
 class Phase3ActivationTests(unittest.TestCase):
-    """The four Phase 3 agents are built as files. They stay uncallable until Joaquin adds authority rows; then they just work."""
+    """The four Phase 3 agents have files, SOPs and (since 2026-10-08) shadow rows in config/authority.md."""
 
-    def test_built_files_exist_but_agents_stay_blocked_until_authority_rows(self):
+    def test_files_exist_and_agents_are_callable_in_shadow(self):
         for name in ("vicky", "angelina", "jerry", "maya"):
             self.assertTrue((REPO / f".claude/agents/{name}.md").exists(), name)
             self.assertTrue((REPO / f"sops/{name}-sop.md").exists(), name)
-            self.assertFalse(callable_agent(name.title(), REPO)[0], name)
-        self.assertFalse(plan_run.plan("spanish-outreach", {"cody_json": "x"}, REPO)["ready"])
+            ok, why = callable_agent(name.title(), REPO)
+            self.assertTrue(ok, why)
+        p = plan_run.plan("spanish-outreach", {"cody_json": "x"}, REPO)
+        self.assertTrue(p["ready"], p["blocking"])
+        self.assertEqual(p["waves"], [["s1"], ["s2"]])
 
-    def test_authority_rows_activate_them_with_no_code_change(self):
-        tmp = _copy_repo()
+    def test_not_built_rows_block_them_until_joaquin_flips_the_flag(self):
+        tmp = _unbuilt_repo("Vicky", "Jerry", "Maya", "Angelina")
         try:
-            auth = tmp / "config/authority.md"
-            text = auth.read_text()
             for n in ("Vicky", "Jerry", "Maya", "Angelina"):
-                text = text.replace(f"| {n} | 3 | not built | - | - | - | NO |", f"| {n} | 3 | shadow | 2026-10-09 | 0/10 | 0 | NO |")
-            auth.write_text(text)
-            for n in ("Vicky", "Jerry", "Maya", "Angelina"):
-                self.assertTrue(callable_agent(n, tmp)[0], n)
-            r = route("write a press release on the Camden win", tmp)
-            self.assertEqual((r["owner"], r["needs_joaquin"]), ("Jerry", False))
-            p = plan_run.plan("spanish-outreach", {"cody_json": "x"}, tmp)
-            self.assertTrue(p["ready"], p["blocking"])
-            self.assertEqual(p["waves"], [["s1"], ["s2"]])
+                self.assertFalse(callable_agent(n, tmp)[0], n)
+            self.assertFalse(plan_run.plan("spanish-outreach", {"cody_json": "x"}, tmp)["ready"])
         finally:
             shutil.rmtree(tmp)
+
+
+def _unbuilt_repo(*names):
+    """Temp copy of the repo where the named agents read 'not built' in config/authority.md."""
+    tmp = _copy_repo()
+    auth = tmp / "config/authority.md"
+    text = auth.read_text()
+    for n in names:
+        text = re.sub(rf"\| {n} \| 3 \| shadow \|[^\n]*", f"| {n} | 3 | not built | - | - | - | NO |", text)
+    auth.write_text(text)
+    return tmp
 
 
 def _copy_repo():
