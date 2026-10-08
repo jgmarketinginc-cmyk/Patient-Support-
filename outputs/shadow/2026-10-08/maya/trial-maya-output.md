@@ -15,8 +15,8 @@
 | 2 | Five-box flow diagram, boxes revealed one by one | "...there are five steps" through "Step five" | Diagram shows only the five in-scope steps |
 | 3 | Box 2 highlighted, example document types listed | "Step two" | Generic examples; bracket client document names |
 | 4 | Box 4 highlighted, two triggers: outside documents, urgent | "Step four" | Operator and office names bracketed |
-| 5 | Two-column "does / does not" slide built line by line | "Now let's be clear..." | Do not add any item not in the scope |
-| 6 | Three-takeaway slide, then Module 2 title card | "Here are three things to remember" | End on the next-step line |
+| 5 | Two-column "does / does not" slide built line by line | "Now let's be clear..." | Right column lines each start "Does not": the four original items plus inspections, scheduling, work-order handoff, document intake, connecting to other platforms or systems, open-request tracking. Revised 2026-10-08 (P3 pass). Never place these in the left column |
+| 6 | Three-takeaway slide, then Module 2 title card | "Here are three things to remember" | Takeaway 3 now names the six out-of-scope items in a "does not" line. End on the next-step line |
 
 Recording notes: use slides only. No real client data, no screenshots of a live system, no client name. Pace about 130 words per minute; leave the pause after each step for the box reveal.
 
@@ -25,6 +25,7 @@ See the reply summary (course_check and brand_scrub run after writing).
 
 ## Sources / Assumptions
 - Sources: /home/user/Patient-Support-/sops/maya-sop.md, config/business.md (Phase 1 gating: Customer Response Agent is sellable now), config/brand.md (colors, fonts, text wordmark), config/footer.md (not used; the footer is for outbound email), config/authority.md (Maya in shadow, send-authorized NO), and the TRIAL-P3 brief.
+- Revision: Module 1 and the card now name the six out-of-scope items inside "does not" clauses only (SOP Rules, Joaquin 2026-10-08); the repetitive-work and example paragraphs were trimmed to hold about 4 minutes.
 - Assumptions: no install notes were supplied, so the module is scope-level only; no dashboard or screen of the built system is shown. Slides use the brand colors from config/brand.md (navy #1F3A5F, gold only on large shapes). Not logged in shadow-log.csv, per the brief.
 - /config/sales.md was not in the required reading list and was not read.
 

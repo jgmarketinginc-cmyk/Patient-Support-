@@ -14,6 +14,12 @@ The AI Agency Blueprint | Customer Response Agent for your business | TEMPLATE, 
 - Handle urgent questions. Urgent goes to a person.
 - Make judgment calls.
 - Replace the named human operator or the office.
+- Do inspections.
+- Do scheduling.
+- Do work-order handoff.
+- Do document intake.
+- Connect to other platforms or systems.
+- Do open-request tracking.
 - Anything beyond the five steps above. If it is not in this training library, it is not part of your system: ask us.
 
 ## Quick rules
@@ -30,5 +36,5 @@ The AI Agency Blueprint | Customer Response Agent for your business | TEMPLATE, 
 - Help with the system: [HOW TO REACH US: set in Module 6, pending Joaquin]
 
 ## Sources / Assumptions
-- Source: the synthetic scope outline (TRIAL-P3). Matches Module 1 wording.
+- Source: the synthetic scope outline (TRIAL-P3). Matches Module 1 wording, including the six out-of-scope items now named in "does not" lines (Joaquin rule, 2026-10-08).
 - Assumed: one page; contact details are placeholders because none were provided. No client name or data.
