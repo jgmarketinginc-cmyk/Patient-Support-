@@ -15,14 +15,18 @@ A New Jersey municipality has signed an AI Audit agreement with The AI Agency Bl
 - Whether the agreement states it carries no commitment to later work (release says so, inferred).
 - Whether "begins each engagement with the AI Audit" and "serves New Jersey municipalities and small businesses" may be stated.
 - Boilerplate text: [PENDING: Joaquin approval]. Media contact name: [PENDING: name, Joaquin].
-- Word count: the release is 331 words. It reaches 300 without invented facts, but the body is thin and partly restates the scope; I did not add more.
+- Notes for Joaquin (moved out of the release, internal only):
+  - No statement from the municipality is included. The municipality has not approved being named or quoted; written approval is needed for both.
+  - Garcia is the company spokesperson on this agreement (confirm).
+  - No case studies from earlier work exist to cite, and the release makes no claims about results.
+- Word count: see Checks. Under the 2026-10-08 rule (floor 200, range 200-500) a short factual release is correct; nothing was added to pad it.
 
 ## Quote approvals needed
 - Joaquin Garcia: drafted quote in the release, tagged [QUOTE PENDING approval: Joaquin Garcia]. Not final.
 - Municipality: no quote exists and none was written. Needs written client approval for both naming and any quote.
 
 ## Checks
-- press_check.py with --client "Township": PASS (331 words), no WARN.
+- press_check.py with --client "Township" --client "Reyes": PASS (284 words), no WARN, no honorific FAIL.
 - brand_scrub.py: PASS, 0 hits.
 - Note: the word "township" is kept out of the whole file, because the checker flags it as a client name. If the real name is later approved, run with --approved-client.
 

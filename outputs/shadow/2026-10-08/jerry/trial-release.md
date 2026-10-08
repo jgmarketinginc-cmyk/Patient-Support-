@@ -8,9 +8,7 @@ The audit takes seven business days. At the end, the municipality will have a wr
 
 "The audit puts in writing what a response system would and would not handle, before anything is built," said Joaquin Garcia, CEO of The AI Agency Blueprint. [QUOTE PENDING approval: Joaquin Garcia]
 
-Mr. Garcia is the company's spokesperson on this agreement. No statement from the municipality is included in this release, because the municipality has not approved being named or quoted.
-
-The AI Agency Blueprint serves New Jersey municipalities and small businesses. It begins each engagement with the AI Audit so that a client can see what an AI system would and would not handle before deciding on any further step. No case studies from earlier work are available to cite, and this release makes no claims about results.
+The AI Agency Blueprint serves New Jersey municipalities and small businesses. It begins each engagement with the AI Audit so that a client can see what an AI system would and would not handle before deciding on any further step.
 
 ## About The AI Agency Blueprint
 
@@ -24,9 +22,9 @@ The AI Agency Blueprint | 80 River St., Hoboken, NJ 07030 | 856-254-6000 | www.t
 ## Sources / Assumptions
 
 - Signed agreement, AI Audit scope, one workflow, seven business days, no build: Chief of Staff synthetic brief, TRIAL-P3, 2026-10-08.
-- Positioning (installs AI-powered operations systems, trained on client documents, named human operator; no case studies): /config/business.md.
+- Positioning (installs AI-powered operations systems, trained on client documents, named human operator): /config/business.md.
 - Contact line: /config/footer.md, verbatim.
-- Assumed: "New Jersey municipality" may be stated (the brief gives the municipality type; the type is withheld from the release until the client approves); needs Joaquin confirmation. Signing date and city are placeholders.
+- Assumed: "New Jersey municipality" may be stated (the municipality type is withheld until the client approves); needs Joaquin confirmation. Signing date and city are placeholders.
 - The statement that the agreement does not commit the municipality to later work is inferred from "no build is part of this agreement"; confirm against the agreement.
 - "Serves New Jersey municipalities and small businesses" and "Hoboken" come from business.md niches and footer.md; Joaquin to confirm for boilerplate.
 - "Begins each engagement with the AI Audit" is derived from the offer ladder (audit as entry offer); confirm.
