@@ -28,7 +28,7 @@ date,agent,item,approved,edits,error_severity
 2026-10-08,cody,RUN-20261008-001 s3 polished follow-up email (SYNTHETIC; COS-delegated),pending,,
 2026-10-08,cody,RUN-20261008-001 s4 proposal narrative (SYNTHETIC; COS-delegated),pending,,
 2026-10-08,dolly,RUN-20261008-001 s5 options table + workflow diagram (SYNTHETIC; COS-delegated),pending,,
-2026-10-08,vicky,TRIAL-P3 Psalm 23:1 script (SYNTHETIC; checker PASS, 2 expected WARNs),pending,,
+2026-10-08,vicky,"TRIAL-P3 Psalm 23:1 script (SYNTHETIC; checker PASS, 2 expected WARNs)",pending,,
 2026-10-08,angelina,TRIAL-P3 Spanish follow-up email (SYNTHETIC; checker PASS),pending,,
 2026-10-08,jerry,TRIAL-P3 press release (SYNTHETIC; reworked once after gate failure: honorific and padding removed; checker PASS at 284 words),pending,,
 2026-10-08,maya,TRIAL-P3 Module 1 + quick-reference card (SYNTHETIC; revised once to name six out-of-scope items in 'does not' clauses; checker PASS at 520 words),pending,,

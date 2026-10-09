@@ -192,6 +192,12 @@ class RunStateTests(unittest.TestCase):
 
 
 class StatusTests(unittest.TestCase):
+    def test_shadow_log_rows_all_have_six_fields(self):
+        """A hand-written row with an unquoted comma shifts the columns and hides pending items from team_status."""
+        with open(REPO / "logs/shadow-log.csv", newline="") as f:
+            bad = [i for i, row in enumerate(csv.reader(f), 1) if len(row) != 6]
+        self.assertEqual(bad, [], f"malformed shadow-log rows (quote any item that contains a comma): {bad}")
+
     def test_rollup_lists_all_registered_agents(self):
         rows = {r["agent"]: r for r in team_status.status(REPO)}
         registered = {"Aaron", "Cody", "Patty", "Frannie", "Mark", "Dolly", "Vicky", "Angelina", "Jerry", "Maya"}
