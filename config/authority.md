@@ -29,10 +29,11 @@ Phase 2 agents run on demand, so the test counts items, not days.
 | Frannie | 2 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 | Mark | 2 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 | Dolly | 2 | shadow | 2026-10-08 | 0/10 | 0 | NO |
-| Vicky | 3 | not built | - | - | - | NO |
-| Jerry | 3 | not built | - | - | - | NO |
-| Maya | 3 | not built | - | - | - | NO |
-| Angelina | 3 | not built | - | - | - | NO |
+| Vicky | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
+| Jerry | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
+| Maya | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
+| Angelina | 3 | shadow | 2026-10-08 | 0/10 | 0 | NO |
+| Chief of Staff | 0 | shadow | 2026-10-08 | 0/10 | 0 | NO |
 
 ## Patty post-exit ramp
 

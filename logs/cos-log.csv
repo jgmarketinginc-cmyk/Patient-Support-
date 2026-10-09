@@ -1,0 +1,2 @@
+date,run_id,goal,venture,playbook,status,steps_done,steps_total,needs_joaquin
+2026-10-08,RUN-20261008-001,Shadow test: debrief the S1 sample call (synthetic),aiab,post-call,complete,6,6,YES

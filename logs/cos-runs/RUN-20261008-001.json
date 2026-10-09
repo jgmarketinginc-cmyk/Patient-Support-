@@ -1,0 +1,76 @@
+{
+  "run_id": "RUN-20261008-001",
+  "date": "2026-10-08",
+  "goal": "Shadow test: debrief the S1 sample call (synthetic)",
+  "venture": "aiab",
+  "playbook": "post-call",
+  "status": "complete",
+  "needs_joaquin": true,
+  "waves": [
+    [
+      "s1"
+    ],
+    [
+      "s2",
+      "s3"
+    ],
+    [
+      "s4",
+      "s5"
+    ],
+    [
+      "s6"
+    ]
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "agent": "Frannie",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/frannie/cos-RUN-20261008-001-s1-note.md",
+      "note": "gates frannie-mark and frannie-cody passed; 21/21 quotes verified"
+    },
+    {
+      "id": "s2",
+      "agent": "Mark",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/mark/cos-RUN-20261008-001-s2-proposal-outline.md",
+      "note": "gates mark-cody and mark-dolly passed; ROI re-run matches; flagged day-13 follow-up after day-10 expiry"
+    },
+    {
+      "id": "s3",
+      "agent": "Cody",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/cody/cos-RUN-20261008-001-s3-email.md",
+      "note": "gate frannie-cody passed; footer and signature verbatim; facts checked against transcript"
+    },
+    {
+      "id": "s4",
+      "agent": "Cody",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/cody/cos-RUN-20261008-001-s4-proposal-narrative.md",
+      "note": "prices all match Mark outline; no client name; footer verbatim; verify misses were placeholder/policy text. Flag: letter states 'We do not discount' (Joaquin to decide)"
+    },
+    {
+      "id": "s5",
+      "agent": "Dolly",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/dolly/cos-RUN-20261008-001-s5/",
+      "note": "asset_check PASS x4 (re-run by COS with --client Reyes); no client name; only price on assets is $1,500; Dolly added execution/dolly_table.py (new script, flag)"
+    },
+    {
+      "id": "s6",
+      "agent": "COS",
+      "status": "passed",
+      "retries": 0,
+      "output": "outputs/shadow/2026-10-08/chief-of-staff/RUN-20261008-001-report.md",
+      "note": "consolidated report written"
+    }
+  ],
+  "escalations": []
+}

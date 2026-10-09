@@ -1,0 +1,2 @@
+{"format":"process_diagram","title":"How questions are handled","subtitle":"Prepared for: Your business. Question-response workflow only.",
+ "steps":["Question arrives by email, phone or portal.","System checks it against documents the client has provided and approved.","If answered from approved documents, the response goes out.","Outside those documents, or urgent: goes to a person (named operator and office).","Human review of what the system could not answer."]}
