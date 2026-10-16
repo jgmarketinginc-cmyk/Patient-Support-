@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200" role="img" aria-label="The AI Agency Blueprint">
+  <rect width="760" height="200" fill="#FFFFFF"/>
+  <rect x="30" y="30" width="140" height="140" rx="18" fill="#1F3A5F"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1">
+    <path d="M65 30V170M100 30V170M135 30V170M30 65H170M30 100H170M30 135H170"/>
+  </g>
+  <g stroke="#C9A227" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M65 135L100 65L135 100"/><path d="M100 65L100 135"/>
+  </g>
+  <g fill="#C9A227"><circle cx="65" cy="135" r="9"/><circle cx="100" cy="65" r="9"/><circle cx="135" cy="100" r="9"/><circle cx="100" cy="135" r="9"/></g>
+  <text x="196" y="92" font-family="Georgia, serif" font-size="40" fill="#1F3A5F">The AI Agency</text>
+  <text x="196" y="142" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#1F3A5F">Blueprint</text>
+</svg>

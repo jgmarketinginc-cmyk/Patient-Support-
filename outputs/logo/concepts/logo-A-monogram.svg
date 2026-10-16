@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200" role="img" aria-label="The AI Agency Blueprint">
+  <rect width="760" height="200" fill="#FFFFFF"/>
+  <rect x="30" y="30" width="140" height="140" rx="18" fill="#1F3A5F"/>
+  <text x="100" y="116" text-anchor="middle" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#FFFFFF">AB</text>
+  <rect x="52" y="136" width="96" height="8" fill="#C9A227"/>
+  <text x="196" y="92" font-family="Georgia, serif" font-size="40" fill="#1F3A5F">The AI Agency</text>
+  <text x="196" y="142" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#1F3A5F">Blueprint</text>
+  <rect x="198" y="154" width="190" height="6" fill="#C9A227"/>
+</svg>
