@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200" role="img" aria-label="The AI Agency Blueprint"><rect width="700" height="200" fill="#1F3A5F"/>
+  <g transform="translate(30,30)">
+    <rect width="140" height="140" rx="3" fill="#FFFFFF"/>
+    <rect x="8" y="8" width="124" height="124" rx="1" fill="none" stroke="#C9A227" stroke-width="2"/>
+    <text x="70" y="88" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="700" fill="#1F3A5F">AB</text>
+    <rect x="34" y="102" width="72" height="5" fill="#C9A227"/>
+  </g>
+  <text x="196" y="82" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="7" fill="#FFFFFF">THE AI AGENCY</text>
+  <rect x="196" y="96" width="60" height="4" fill="#C9A227"/>
+  <text x="194" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700" letter-spacing="3" fill="#FFFFFF">BLUEPRINT</text>
+</svg>
