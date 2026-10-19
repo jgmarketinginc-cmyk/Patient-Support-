@@ -1,0 +1,6 @@
+{
+  "name": "ai-agency-blueprint-agents",
+  "version": "0.1.0",
+  "description": "Guardian, Gatekeeper, Patty (Loader) and Hygiene: the cold-email operations agents for The AI Agency Blueprint.",
+  "author": { "name": "Joaquin Garcia" }
+}
