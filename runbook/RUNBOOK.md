@@ -26,7 +26,7 @@ Sunday: Aaron weekly review > Monday memo
 | 17:30 | Patty | Dashboard | Apollo stats | Sends, opens, replies, positive reply rate, meetings, bounces, inbox health |
 | Sun 19:00 | Aaron | Mode 4 WEEKLY REVIEW | All agents' metrics | One-page Monday memo (worst metric, one fix, "the one thing not to do") |
 
-Phase 2 agents run on demand (see Phase 2 pipeline below). Phase 3 agents (Vicky, Jerry, Maya, Angelina) are not built. Aaron also produces pre-call briefs on request.
+Phase 2 agents run on demand (see Phase 2 pipeline below). Phase 3 agents (Vicky, Jerry, Maya, Angelina) are in shadow since 2026-10-08 (Joaquin, /config/authority.md); see the Phase 3 section below. Aaron also produces pre-call briefs on request.
 
 ## Phase 2 pipeline (on demand)
 
@@ -56,6 +56,35 @@ Handoff contracts (Phase 2):
 Phase 2 shadow exit test is item-based: 10 real approved items per agent, >=95% approved with no edits, zero critical errors (see /config/authority.md).
 
 Phase 2 rules: Apollo is the system of record; drafts and staging only; price above $1,500 in writing only; never discount on a first meeting (offer reduced scope); constants in /config/sales.md and /config/brand.md. Authority flags for Frannie, Mark and Dolly start as `shadow` once Joaquin updates /config/authority.md (it still reads "not built").
+
+## Phase 3 agents (on demand)
+
+| Agent | Role | Trigger | Output / handoff | Checker |
+|---|---|---|---|---|
+| Vicky | Viral scripture short-form video scripts | Joaquin request (reference or theme) | Script file: 3 hooks, body, caption, hashtags. Joaquin records and posts. | `execution/scripture_check.py` |
+| Angelina | Translator (Spanish first, for NJ/PA municipalities with Hispanic leadership) | Request from Cody, Jerry, Maya or Joaquin with an approved English asset | Translated asset, glossary, flags. Outreach JSON goes to Patty only through the Chief of Staff gate (`angelina-patty`). | `execution/translation_check.py` |
+| Jerry | PR and press for documented wins | Joaquin request with a source of truth | Press release, boilerplate, subject lines, open facts. Joaquin sends. | `execution/press_check.py` |
+| Maya | Course creator: client training and courses | Install build phase or delivery, or Joaquin request | Six core module scripts, shot lists, reference materials. Joaquin records on Loom. | `execution/course_check.py` |
+
+Phase 3 rules: shadow from the first run; nothing is published, sent or shared; Joaquin approves and sends. Playbooks: `spanish-outreach` (Angelina > Patty) and `client-training` (Maya > Angelina when Spanish is needed > Chief of Staff recording package). Open items: venture for scripture content, approved scripture translation and verse source, Spanish opt-out wording, native-speaker reviewer, approved boilerplate and media contact, whether courses are sold as a product.
+
+## Chief of Staff (head of agents)
+
+The Chief of Staff conducts the team from the main session with `/cos <goal>`. It is not a subagent (subagents cannot call subagents) and it does not use the Workflow tool. Directive: /sops/chief-of-staff-sop.md. Note: "Chief of Staff" is also the outbound email signature (/config/footer.md); that is a different thing.
+
+```
+Joaquin > Chief of Staff > [Aaron, Cody, Patty, Frannie, Mark, Dolly, + Phase 3 when built]
+```
+
+Conducting loop: intake > classify (`route_request.py`) > pre-flight (authority, phase, inputs) > plan (`plan_run.py`) > delegate in waves (max 6 parallel) > gate each handoff (`check_handoff.py`, one rework, then halt and escalate) > consolidate one report to Joaquin > learn.
+
+Decision rights are in /config/decision-rights.md: the Chief of Staff decides routine operations; Joaquin decides authority flags, phase, prices and terms, contracts, anything external, spend, brand, adding or retiring agents, critical-error resets, anything outside the menu.
+
+Playbooks (/config/playbooks.md): `daily-outbound`, `post-call`, `weekly-review`, `pre-call-brief`, `escalation`; stubs for the other ventures until Joaquin fills /config/ventures.md. The registry (/config/agent-registry.md) lists ten agents; Vicky, Angelina, Jerry and Maya are registered as not built, so requests for them escalate. To add one, follow /docs/adding-an-agent.md.
+
+Records: `logs/cos-runs/<run_id>.json`, `logs/cos-log.csv`; consolidated reports in `outputs/shadow/<date>/chief-of-staff/`.
+
+Shadow: the Chief of Staff is in shadow from its first run. Proposed row for /config/authority.md (Joaquin adds it): `| Chief of Staff | 0 | shadow | 2026-10-08 | 0/10 | 0 | NO |`. Exit test: item-based like Phase 2 (10 real approved run reports, >=95% approved with no edits, zero critical errors).
 
 ## Handoff contracts
 

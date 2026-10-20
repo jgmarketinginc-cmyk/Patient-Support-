@@ -1,0 +1,9 @@
+{"title":"Your three options","subtitle":"Prepared for: Your business",
+ "columns":["Option 1: AI Audit","Option 2: AI Operations Install","Option 3: Install + Managed Operations"],
+ "rows":[
+ ["Scope",["Map what comes in and what the system would handle, before any build. Reduced scope, low-risk first step.","Question-response system for tenant questions, trained on your own documents (lease terms, portal steps, office hours). Named human operator. Anything outside approved documents goes to a person.","Option 2 plus an optional Managed Operations retainer for the one workflow in scope."]],
+ ["Price",["$1,500","See written proposal","See written proposal"]],
+ ["Delivery",["7 business days","21 days","21 days; retainer starts at delivery, if agreed"]],
+ ["Payment",["Upfront in full. Not credited toward the Install.","Half at signing (deposit); balance at 21-day delivery.","As Option 2; retainer billed monthly once agreed."]],
+ ["Labor-savings payback",["None claimed (diagnostic)","About 14.1 to 19.8 months. Target range; no results are promised.","Does not pay back on labor savings alone."]]
+ ]}

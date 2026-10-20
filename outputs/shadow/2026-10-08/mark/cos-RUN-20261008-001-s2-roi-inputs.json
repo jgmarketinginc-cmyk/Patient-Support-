@@ -1,0 +1,15 @@
+{
+ "hours_per_week": 15,
+ "hours_source": "transcript 00:48 (Dana Reyes: \"My office manager Priya spends about 15 hours a week just answering those\")",
+ "hourly_cost": 28,
+ "cost_source": "transcript 00:48 (Dana Reyes: \"I pay her $28 an hour\")",
+ "loaded_multiplier": 1.0,
+ "multiplier_source": "config/sales.md ROI inputs, SET by Joaquin 2026-10-08 (wage only)",
+ "replaced_share": [0.5, 0.7],
+ "replaced_share_source": "config/business.md positioning 50-70%; config/sales.md ROI inputs. Target range, not a guarantee; no client results exist yet.",
+ "options": [
+  {"name": "AI Audit", "one_time": 1500, "monthly": 0, "delivery": "7 business days", "price_source": "config/business.md offer ladder step 1"},
+  {"name": "AI Operations Install", "one_time": 18000, "monthly": 0, "delivery": "21 days", "price_source": "config/business.md offer ladder step 2"},
+  {"name": "Install + Managed Operations (1 workflow tier)", "one_time": 18000, "monthly": 2400, "delivery": "21 days, retainer from delivery", "price_source": "config/business.md step 2 + config/sales.md retainer tier $2,400/mo for one workflow"}
+ ]
+}

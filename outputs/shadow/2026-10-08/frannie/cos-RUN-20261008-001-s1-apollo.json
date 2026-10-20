@@ -1,0 +1,35 @@
+{
+  "contact_id": "SAMPLE-APOLLO-001",
+  "stage": "Qualified - Proposal Needed",
+  "objections": [
+    {
+      "id": "O10",
+      "at": "12:55",
+      "quote": "How would it know the office hours are right? That's the thing that burned me."
+    },
+    {
+      "id": "O8",
+      "at": "13:30",
+      "quote": "I'd still want to think about it, and run it by my accountant."
+    },
+    {
+      "id": "O5",
+      "at": "13:30",
+      "quote": "run it by my accountant",
+      "note": "soft; Dana is decision-maker"
+    }
+  ],
+  "next_step": "Send written proposal with options (audit and build) for Dana to review with her accountant; follow up by Friday",
+  "next_step_date": "2026-10-09",
+  "note": "Call 2026-10-07 (Joaquin, 18:00). Dana Reyes, owner, ~90 units, decision-maker. Pain: office manager Priya ~15 hrs/week on repetitive tenant questions at $28/hr; buried late-night leak ticket; past canned auto-reply gave wrong office hours. Wants nothing urgent buried and no wrong answers. Objections O10, O8, soft O5. $1,500 audit quoted; she said she can decide on that. Asked about the full build; no price given. Prospect talk share 54.2%. No escalation items.",
+  "task": {
+    "type": "action_item",
+    "title": "Mark: prepare written proposal with options for Dana Reyes",
+    "due_at": "2026-10-09",
+    "contact_id": "SAMPLE-APOLLO-001",
+    "note": "Hand to Mark. Full-build pricing in writing only. Follow up with Dana by Friday 2026-10-09."
+  },
+  "staged_only": true,
+  "mode": "shadow",
+  "synthetic": true
+}
