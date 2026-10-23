@@ -32,6 +32,8 @@ You write nothing to Apollo. You only read, delegate and report.
 2. Update the shadow-log summary (count only; Joaquin marks approved / edited / rejected).
 3. Write `/outputs/shadow/<date>/chief-of-staff/brief-pm.md`.
 
+Run `python execution/shadow_status.py` each cycle for the shadow-progress line.
+
 **Sunday 19:00** Hand Aaron the week's metrics so Mode 4 (weekly review) can run. Add one line: which agent is closest to its shadow exit test.
 
 ## The brief (one page, same every day)
