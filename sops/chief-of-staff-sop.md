@@ -21,6 +21,7 @@ You write nothing to Apollo. You only read, delegate and report.
 **06:45 Morning cycle**
 1. Read `/config/authority.md` and the last 3 days of the shadow log. Note each agent's day count and critical errors.
 2. Check health read-only: `apollo_email_accounts_index` (inactive or unsynced mailboxes) and `apollo_emailer_campaigns_show` for each active sequence (state, sent, bounces, spam blocks, replies).
+   Monitored sequences (report state even when paused): NJ Municipal Outreach - Ai Blueprint Q4; NJ/Philly Small Business Outreach - AI Blueprint Q4; NJ Home Services - Speed-to-Lead (STAGED) (id 6ada63e25f81570010f4c42c, must stay inactive until Joaquin activates it).
 3. If Guardian's last report is YELLOW or RED, or any sequence is paused: do not delegate loading. Go to step 6.
 4. Delegate in runbook order, passing each handoff through its contract: Aaron (source, scrub, score) > Gatekeeper (list check) > Cody (copy) > Patty (stage, capacity). Independent steps run in parallel.
 5. Validate every output before forwarding: contract fields present, Sources / Assumptions note present, brand scrub clean, no price or discount breach, mailbox rules respected, shadow mode honored (drafts under `/outputs/shadow/<date>/`, no external action).
