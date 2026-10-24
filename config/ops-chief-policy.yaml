@@ -39,7 +39,8 @@ hard_limits:             # never crossed, no override by the agent
 
 data_sources:
   observe: [apollo, gmail, google_calendar, cal_com_bookings, slack, notion]
-  finance: deferred        # QuickBooks (free plan) on hold; add Stripe or a simple tracker once income starts
+  finance: stripe_live_readonly   # Stripe live account (acct ...ZvzS), READ-ONLY tools only. QuickBooks parked (old account is Self-Employed, not QBO).
+  finance_forbidden: [stripe_api_write, create_invoice, refund, payout, payment_link, any_write]
   shadow_start_date: null  # set when the first shadow run happens
 
 notify: [slack:#agent-ops, slack:#agent-alerts, slack:#agent-approvals, telegram]
