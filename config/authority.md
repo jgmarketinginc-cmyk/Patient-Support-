@@ -33,6 +33,7 @@ Phase 2 agents run on demand, so the test counts items, not days.
 | Jerry | 3 | not built | - | - | - | NO |
 | Maya | 3 | not built | - | - | - | NO |
 | Angelina | 3 | not built | - | - | - | NO |
+| Ops Chief | 4 (above Chief of Staff) | shadow, proposes only | 2026-10-26 | 0/10 | 0 | NO |
 
 ## Patty post-exit ramp
 
