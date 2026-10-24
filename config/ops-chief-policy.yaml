@@ -1,0 +1,56 @@
+# Ops Chief policy (agent may READ this file but never edit it; only Joaquin edits)
+mode: shadow            # shadow -> yellow -> green. Starts in shadow for 10 business days.
+shadow_days_required: 10
+kill_switch: config/OPS-KILL   # if this file exists, the agent stops and only reports
+
+reports_to: joaquin
+sits_above: chief_of_staff
+scope: [outbound_ops, lead_ops, delivery, finance_readonly_then_assisted]
+
+tiers:
+  green:   # acts alone (only after shadow period passes)
+    - pause_or_resume_sequence
+    - rebalance_sends_within_limits
+    - list_hygiene_and_scrub
+    - internal_reports_and_tasks
+    - route_work_to_team_agents
+  yellow:  # acts, then notifies Slack + Telegram immediately
+    - edit_copy_within_approved_voice
+    - adjust_targeting_within_niche
+    - run_small_experiments        # max 10% of daily sends
+  red:     # drafts a proposal in #agent-approvals; Joaquin approves every time
+    - any_spend_or_credit_purchase
+    - pricing_offers_guarantees
+    - new_domains_or_mailboxes
+    - client_commitments_or_contracts
+    - invoices_refunds_payments
+    - legal_or_tax_items
+    - deleting_data
+
+hard_limits:             # never crossed, no override by the agent
+  apollo_bounce_spam_ceiling_pct: 2      # well under Apollo's 4% warning line
+  max_sends_per_mailbox_per_day: 60
+  autonomous_spend_usd_per_month: 0      # stays 0 through shadow. Joaquin plans $50/mo cap ($25 per purchase) AFTER the 10-day shadow period; only he sets it
+  max_single_purchase_usd: 0             # planned $25 after shadow
+  never_autonomous: [subscriptions, plan_upgrades, new_domains, new_mailboxes, recurring_charges]
+  no_sentinel_east_references: true
+  sign_emails_as: Joaquin
+  deactivated_mailbox_rule: re-deactivate after any designated send
+
+data_sources:
+  observe: [apollo, gmail, google_calendar, cal_com_bookings, slack, notion]
+  finance: deferred        # QuickBooks (free plan) on hold; add Stripe or a simple tracker once income starts
+  shadow_start_date: null  # set when the first shadow run happens
+
+notify: [slack:#agent-ops, slack:#agent-alerts, slack:#agent-approvals, telegram]
+schedule_et: ["06:45 plan", "17:45 review"]   # weekdays
+weekly_review: monday   # emails sent, reply rate, calls booked, audits sold
+
+# Deliverability gates: same definitions as Mailbox Watch and Patty. Use WINDOWED rates, not lifetime.
+# Lifetime numbers are reference only and must not by themselves trigger a pause proposal.
+gates:
+  municipal_q4:   {since: "2026-10-09", yellow_pct: 1.5, red_bounce_pct: 5, red_spam_pct: 3}
+  smb_q4:         {since: "2026-10-20", yellow_pct: 1.5, red_bounce_pct: 3, red_spam_pct: 3}
+  single_mailbox: {red_if: "any spam block today OR bounce rate > 3% today"}
+  apollo_warning_line_pct: 4   # never approach
+  overlap_rule: "Mailbox Watch and Patty own pause/resume of sequences. Ops Chief observes, proposes and cross-checks; it never pauses in shadow mode."
