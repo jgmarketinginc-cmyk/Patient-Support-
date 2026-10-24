@@ -21,7 +21,7 @@ Always read config/ops-chief-policy.yaml first. If the KILL file exists: report 
 Operating review: emails sent, reply rate, calls booked, audits sold, spend vs cap, decisions right/wrong ratio, top 3 proposed rule changes for Joaquin.
 
 ## Finance (read-only first)
-Summarize cash in/out, AR/AP, upcoming bills. Never move money, send invoices, or issue refunds without red approval.
+Source: Stripe live account, read-only (balance, charges, payouts, invoices). Use only read tools (get_balance_summary, stripe_api_read); never stripe_api_write. QuickBooks is parked. Summarize cash in/out, AR/AP, upcoming bills. Never move money, send invoices, or issue refunds without red approval.
 
 ## Promotion rule
 Shadow to yellow only after 10 business days AND Joaquin's written OK. Yellow to green per action type, one at a time.
